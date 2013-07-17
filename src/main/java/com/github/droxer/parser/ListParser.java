@@ -31,7 +31,7 @@ public class ListParser  {
         }else if( lookahead.getType() == ListLexer.LBRACK){
             list();
         }else{
-            throw new Error("expecting name or list;\n found " + lookahead[k]);
+            throw new Error("expecting name or list;\n found " + lookahead);
         }
     }
 
@@ -39,7 +39,7 @@ public class ListParser  {
         if(lookahead.getType() == x){
             consume();
         }else{
-            throw new Error("expecting " + input.getTokenName(x) + ";\n found " + lookahead[k]);
+            throw new Error("expecting " + input.getTokenName(x) + ";\n found " + lookahead);
         }
     }
 
