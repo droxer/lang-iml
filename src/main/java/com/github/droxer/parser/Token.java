@@ -1,19 +1,24 @@
 package com.github.droxer.parser;
 
 public final class Token {
-    private int type;
+    private int index;
     private String text;
 
-    public Token(int type, String text) {
-        this.type = type;
+    public Token(int index, String text) {
+        this.index = index;
         this.text = text;
     }
 
-    public int getType() {
-        return type;
+    public int getIndex() {
+        return index;
     }
 
     public String getText() {
         return text;
+    }
+
+    @Override
+    public String toString() {
+        return "<" + text + ":" + index + ">";
     }
 }

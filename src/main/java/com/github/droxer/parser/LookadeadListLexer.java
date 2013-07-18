@@ -1,25 +1,31 @@
 package com.github.droxer.parser;
 
-public class ListLexer extends Lexer {
+public class LookadeadListLexer {
+
+    private static final char EOF = (char)-1;
+    private static final int EOF_TYPE = -1;
+
+    private String input;
+    private int p;
+    private char c;
 
     public static int NAME = 2;
     public static int COMMA = 3;
     public static int LBRACK = 4;
     public static int RBRACK = 5;
+    public static int EQUALS = 6;
 
-    public static String[] tokenNames = {"n/a", "<EOF>", "NAME", "COMMA", "LBRACK", "RBRACK"};
-    private boolean letter;
+    public static String[] tokenNames = {"n/a", "<EOF>", "NAME", "COMMA", "LBRACK", "RBRACK", "EQUALS"};
 
-    public ListLexer(String input){
-        super(input);
+    public LookadeadListLexer(String input){
+        this.input = input;
+        c = input.charAt(p);
     }
 
-    @Override
     public String getTokenName(int x){
         return tokenNames[x];
     }
 
-    @Override
     public Token nextToken() {
         while (c != EOF){
             switch ( c ){
@@ -27,6 +33,7 @@ public class ListLexer extends Lexer {
                 case ',': consume(); return new Token(COMMA, ",");
                 case '[': consume(); return new Token(LBRACK, "[");
                 case ']': consume(); return new Token(RBRACK, "]");
+                case '=': consume(); return new Token(EQUALS, "=");
                 default:
                     if ( isLetter()){
                         return name();
@@ -37,6 +44,23 @@ public class ListLexer extends Lexer {
         }
         return new Token(EOF_TYPE, "<EOF>");
     }
+
+    private void consume(){
+        p++ ;
+        if(p >= input.length()){
+            c = EOF;
+        }else{
+            c = input.charAt(p);
+        }
+    }
+//
+//    private void match(char x){
+//        if( c == x ){
+//            consume();
+//        }else{
+//            throw new Error("Expecting "+ x + "; found" + c);
+//        }
+//    }
 
     private Token name() {
         StringBuilder builder = new StringBuilder();
