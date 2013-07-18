@@ -67,7 +67,7 @@ public class MultiListParser {
     }
 
     public static void main(String[] args){
-        LookadeadListLexer lookadeadListLexer = new LookadeadListLexer("[a, b=c, [d, e]]");
+        LookadeadListLexer lookadeadListLexer = new LookadeadListLexer("[a, b=, [d, e]]");
         MultiListParser multiListParser = new MultiListParser(lookadeadListLexer, 2);
         multiListParser.list();
     }
