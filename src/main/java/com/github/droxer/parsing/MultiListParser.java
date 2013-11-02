@@ -1,4 +1,4 @@
-package com.github.droxer.parser;
+package com.github.droxer.parsing;
 
 public class MultiListParser {
 
@@ -64,11 +64,5 @@ public class MultiListParser {
     private void consume() {
         lookahead[p] = input.nextToken();
         p = (p+1) % k;
-    }
-
-    public static void main(String[] args){
-        LookadeadListLexer lookadeadListLexer = new LookadeadListLexer("[a, b=, [d, e]]");
-        MultiListParser multiListParser = new MultiListParser(lookadeadListLexer, 2);
-        multiListParser.list();
     }
 }

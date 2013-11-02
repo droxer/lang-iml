@@ -1,4 +1,4 @@
-package com.github.droxer.parser;
+package com.github.droxer.parsing;
 
 public final class Token {
     private int index;

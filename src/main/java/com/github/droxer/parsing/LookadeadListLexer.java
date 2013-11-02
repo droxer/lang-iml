@@ -1,4 +1,4 @@
-package com.github.droxer.parser;
+package com.github.droxer.parsing;
 
 public class LookadeadListLexer {
 
@@ -53,14 +53,6 @@ public class LookadeadListLexer {
             c = input.charAt(p);
         }
     }
-//
-//    private void match(char x){
-//        if( c == x ){
-//            consume();
-//        }else{
-//            throw new Error("Expecting "+ x + "; found" + c);
-//        }
-//    }
 
     private Token name() {
         StringBuilder builder = new StringBuilder();

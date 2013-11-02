@@ -1,4 +1,4 @@
-package com.github.droxer.parser;
+package com.github.droxer.parsing;
 
 public class SimpleListParser {
 
@@ -46,11 +46,5 @@ public class SimpleListParser {
 
     private void consume(){
         lookahead = input.nextToken();
-    }
-
-    public static void main(String [] args){
-        LookadeadListLexer lookadeadListLexer = new LookadeadListLexer("[a, [m, c], b]");
-        SimpleListParser simpleListParser = new SimpleListParser(lookadeadListLexer);
-        simpleListParser.list();
     }
 }
