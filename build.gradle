@@ -7,10 +7,10 @@ project(":"){
     }
 
     dependencies {
-        compile 'org.antlr:antlr:3.2'
-                'org.antlr:antlr-runtime:3.2'
+        compile 'org.antlr:antlr4:4.1',
+                'org.antlr:antlr4-runtime:4.1',
+                'org.antlr:ST4:4.0.3'
 
-        testCompile 'junit:junit:4.10',
-                    'org.antlr:gunit:3.2'
+        testCompile 'junit:junit:4.10'
     }
 }
