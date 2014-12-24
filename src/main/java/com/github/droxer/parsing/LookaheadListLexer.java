@@ -1,6 +1,6 @@
 package com.github.droxer.parsing;
 
-public class LookadeadListLexer {
+public class LookaheadListLexer {
 
     private static final char EOF = (char)-1;
     private static final int EOF_TYPE = -1;
@@ -17,7 +17,7 @@ public class LookadeadListLexer {
 
     public static String[] tokenNames = {"n/a", "<EOF>", "NAME", "COMMA", "LBRACK", "RBRACK", "EQUALS"};
 
-    public LookadeadListLexer(String input){
+    public LookaheadListLexer(String input){
         this.input = input;
         c = input.charAt(p);
     }

@@ -6,8 +6,8 @@ public class SimpleListParserTest {
 
     @Test
     public void testList() throws Exception {
-        LookadeadListLexer lookadeadListLexer = new LookadeadListLexer("[a, [m, c], b]");
-        SimpleListParser simpleListParser = new SimpleListParser(lookadeadListLexer);
+        LookaheadListLexer lookaheadListLexer = new LookaheadListLexer("[a, [m, c], b]");
+        SimpleListParser simpleListParser = new SimpleListParser(lookaheadListLexer);
         simpleListParser.list();
     }
 }

@@ -2,34 +2,34 @@ package com.github.droxer.parsing;
 
 public class SimpleListParser {
 
-    private LookadeadListLexer input;
+    private LookaheadListLexer input;
     private Token lookahead;
     private int p = 0;
 
 
-    public SimpleListParser(LookadeadListLexer lexerLookadead) {
+    public SimpleListParser(LookaheadListLexer lexerLookadead) {
         this.input = lexerLookadead;
         lookahead = input.nextToken();
     }
 
     public void list(){
-        match(LookadeadListLexer.LBRACK);
+        match(LookaheadListLexer.LBRACK);
         elements();
-        match(LookadeadListLexer.RBRACK);
+        match(LookaheadListLexer.RBRACK);
     }
 
     private void elements() {
         element();
-        while (lookahead.getIndex() == LookadeadListLexer.COMMA){
-            match(LookadeadListLexer.COMMA);
+        while (lookahead.getIndex() == LookaheadListLexer.COMMA){
+            match(LookaheadListLexer.COMMA);
             element();
         }
     }
 
     private void element() {
-        if(lookahead.getIndex() == LookadeadListLexer.NAME) {
-            match(LookadeadListLexer.NAME);
-        }else if( lookahead.getIndex() == LookadeadListLexer.LBRACK){
+        if(lookahead.getIndex() == LookaheadListLexer.NAME) {
+            match(LookaheadListLexer.NAME);
+        }else if( lookahead.getIndex() == LookaheadListLexer.LBRACK){
             list();
         }else{
             throw new Error("expecting name or list;\n found " + lookahead);

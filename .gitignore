@@ -5,3 +5,5 @@
 build/
 out/
 .DS_Store
+src/main/java/com/github/droxer/parsing/antlr/*.java
+src/main/java/com/github/droxer/parsing/antlr/*.tokens
