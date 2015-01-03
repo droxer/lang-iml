@@ -9,7 +9,8 @@ project(":"){
     dependencies {
         compile 'org.antlr:antlr4:4.1',
                 'org.antlr:antlr4-runtime:4.1',
-                'org.antlr:ST4:4.0.3'
+                'org.antlr:ST4:4.0.3',
+                'com.google.guava:guava:18.0'
 
         testCompile 'junit:junit:4.10'
     }
