@@ -1,16 +1,16 @@
 package com.github.droxer.parsing;
 
 public final class Token {
-    private int index;
+    private int type;
     private String text;
 
-    public Token(int index, String text) {
-        this.index = index;
+    public Token(int type, String text) {
+        this.type = type;
         this.text = text;
     }
 
-    public int getIndex() {
-        return index;
+    public int getType() {
+        return type;
     }
 
     public String getText() {
@@ -19,7 +19,8 @@ public final class Token {
 
     @Override
     public String toString() {
-        return "<" + text + ":" + index + ">";
+        String tname = ListLexer.tokenNames[type];
+        return "<'"+text+"',"+tname+">";
     }
 }
 
