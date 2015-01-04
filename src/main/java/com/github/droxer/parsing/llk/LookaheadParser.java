@@ -1,4 +1,4 @@
-package com.github.droxer.parsing.multi;
+package com.github.droxer.parsing.llk;
 
 import com.github.droxer.parsing.Lexer;
 import com.github.droxer.parsing.ListLexer;
@@ -9,7 +9,7 @@ public class LookaheadParser extends Parser {
         super(lexer, k);
     }
 
-    public void list(){
+    public void list() {
         match(ListLexer.LBRACK);
         elements();
         match(ListLexer.RBRACK);
@@ -17,19 +17,23 @@ public class LookaheadParser extends Parser {
 
     private void elements() {
         element();
-        while ( LA(1)  == ListLexer.COMMA){
+        while (lookahead(1).getType() == ListLexer.COMMA) {
             match(ListLexer.COMMA);
             element();
         }
     }
 
     private void element() {
-        if ( LA(1)== ListLexer.NAME && LA(2)== ListLexer.EQUALS ) {
+        if (lookahead(1).getType() == ListLexer.NAME && lookahead(2).getType() == ListLexer.EQUALS) {
             match(ListLexer.NAME);
             match(ListLexer.EQUALS);
             match(ListLexer.NAME);
+        } else if (lookahead(1).getType() == ListLexer.NAME) {
+            match(ListLexer.NAME);
+        } else if (lookahead(1).getType() == ListLexer.LBRACK) {
+            list();
+        } else {
+            throw new Error("expecting name or list; found " + lookahead(1));
         }
-        else if ( LA(1)== ListLexer.NAME ) match(ListLexer.NAME); else if ( LA(1)== ListLexer.LBRACK ) list();
-        else throw new Error("expecting name or list; found "+LT(1));
     }
 }

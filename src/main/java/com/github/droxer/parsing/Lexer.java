@@ -3,9 +3,10 @@ package com.github.droxer.parsing;
 public abstract class Lexer {
     public static final char EOF = (char) -1;
     public static final int EOF_TYPE = -1;
-    String input;
-    int p;
-    char c;
+    
+    protected String input;
+    protected int p;
+    protected char c;
 
     public Lexer(String input) {
         this.input = input;

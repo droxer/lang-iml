@@ -1,13 +1,13 @@
-package com.github.droxer.parsing.multi;
+package com.github.droxer.parsing.llk;
 
 import com.github.droxer.parsing.Lexer;
 import com.github.droxer.parsing.Token;
 
 public class Parser {
-    Lexer lexer;
-    Token[] lookahead;
-    int k;
-    int p = 0;
+    protected Lexer lexer;
+    protected Token[] lookahead;
+    protected int k;
+    protected int p = 0;
 
     public Parser(Lexer lexer, int k) {
         this.lexer = lexer;
@@ -24,17 +24,13 @@ public class Parser {
         p = (p + 1) % k;
     }
 
-    public Token LT(int i) {
+    public Token lookahead(int i) {
         return lookahead[(p+i-1) % k];
     }
 
-    public int LA(int i) {
-        return LT(i).getType();
-    }
-
     public void match(int x) {
-        if ( LA(1) != x ) {
-            throw new Error("expecting "+lexer.getTokenName(x)+ "; found "+LT(1));
+        if ( lookahead(1).getType() != x ) {
+            throw new Error("expecting "+lexer.getTokenName(x)+ "; found "+ lookahead(1));
         }
 
         consume();

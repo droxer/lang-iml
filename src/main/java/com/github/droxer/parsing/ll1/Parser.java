@@ -1,4 +1,4 @@
-package com.github.droxer.parsing.simple;
+package com.github.droxer.parsing.ll1;
 
 import com.github.droxer.parsing.Lexer;
 import com.github.droxer.parsing.Token;

@@ -1,4 +1,4 @@
-package com.github.droxer.parsing.multi;
+package com.github.droxer.parsing.llk;
 
 import com.github.droxer.parsing.ListLexer;
 import org.junit.Test;
