@@ -2,7 +2,7 @@ package com.github.droxer.parsing;
 
 public abstract class Lexer {
     public static final char EOF = (char) -1;
-    public static final int EOF_TYPE = -1;
+    public static final int EOF_TYPE = 1;
     
     protected String input;
     protected int p;
@@ -23,8 +23,11 @@ public abstract class Lexer {
     }
 
     public void match(char x) {
-        if ( c == x) consume();
-        else throw new Error("expecting "+x+"; found "+c);
+        if ( c == x) {
+            consume();
+        } else {
+            throw new Error("expecting "+x+"; found "+c);
+        }
     }
 
     public abstract Token nextToken();

@@ -10,51 +10,49 @@ public class BacktrackParser extends Parser {
     /**
      * stat : list EOF | assign EOF ;
      */
-    public void stat() throws RecognitionException, MismatchedTokenException, NoViableAltException {
-        // attempt alternative 1: list EOF
+    public void stat() throws RecognitionException {
         if (speculate_stat_alt1()) {
             list();
             match(Lexer.EOF_TYPE);
-        }
-        // attempt alternative 2: assign EOF
-        else if (speculate_stat_alt2()) {
+        } else if (speculate_stat_alt2()) {
             assign();
             match(Lexer.EOF_TYPE);
+        } else {
+            throw new NoViableAltException("expecting stat found " + LT(1));
         }
-        // must be an error; neither matched; LT(1) is lookahead token 1
-        else throw new NoViableAltException("expecting stat found " + LT(1));
     }
 
-    public boolean speculate_stat_alt1() throws MismatchedTokenException, NoViableAltException {
+    public boolean speculate_stat_alt1() {
         boolean success = true;
-        mark(); // mark this spot in input so we can rewind
+        mark();
         try {
             list();
             match(Lexer.EOF_TYPE);
         } catch (RecognitionException e) {
             success = false;
         }
-        release(); // either way, rewind to where we were
+
+        release();
         return success;
     }
 
-    public boolean speculate_stat_alt2() throws MismatchedTokenException, NoViableAltException {
+    public boolean speculate_stat_alt2() {
         boolean success = true;
-        mark(); // mark this spot in input so we can rewind
+        mark();
         try {
             assign();
             match(Lexer.EOF_TYPE);
         } catch (RecognitionException e) {
             success = false;
         }
-        release(); // either way, rewind to where we were
+        release();
         return success;
     }
 
     /**
      * assign : list '=' list ; // parallel assignment
      */
-    public void assign() throws RecognitionException, MismatchedTokenException, NoViableAltException {
+    public void assign() throws RecognitionException {
         list();
         match(ListLexer.EQUALS);
         list();
@@ -63,7 +61,7 @@ public class BacktrackParser extends Parser {
     /**
      * list : '[' elements ']' ; // match bracketed list
      */
-    public void list() throws RecognitionException, MismatchedTokenException, NoViableAltException {
+    public void list() throws RecognitionException {
         match(ListLexer.LBRACK);
         elements();
         match(ListLexer.RBRACK);
@@ -72,7 +70,7 @@ public class BacktrackParser extends Parser {
     /**
      * elements : element (',' element)* ; // match comma-separated list
      */
-    void elements() throws RecognitionException, NoViableAltException, MismatchedTokenException {
+    void elements() throws RecognitionException {
         element();
         while (LA(1) == ListLexer.COMMA) {
             match(ListLexer.COMMA);
@@ -83,7 +81,7 @@ public class BacktrackParser extends Parser {
     /**
      * element : name '=' NAME | NAME | list ; // assignment, name or list
      */
-    void element() throws RecognitionException, MismatchedTokenException, NoViableAltException {
+    void element() throws RecognitionException {
         if (LA(1) == ListLexer.NAME && LA(2) == ListLexer.EQUALS) {
             match(ListLexer.NAME);
             match(ListLexer.EQUALS);
