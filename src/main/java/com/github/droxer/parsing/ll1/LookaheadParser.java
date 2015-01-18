@@ -2,11 +2,15 @@ package com.github.droxer.parsing.ll1;
 
 import com.github.droxer.parsing.Lexer;
 import com.github.droxer.parsing.ListLexer;
+import com.github.droxer.parsing.Token;
 
-public class LookaheadParser extends Parser {
+public class LookaheadParser{
+
+    Lexer lexer;Token token;
 
     public LookaheadParser(Lexer lexer) {
-        super(lexer);
+        this.lexer = lexer;
+        token = this.lexer.nextToken();
     }
 
     public void list(){
@@ -33,4 +37,15 @@ public class LookaheadParser extends Parser {
         }
     }
 
+    public void match(int x) {
+        if(token.getType() == x){
+            consume();
+        }else{
+            throw new Error("expecting " + lexer.getTokenName(x) + ";\n found " + token);
+        }
+    }
+
+    public void consume(){
+        token = lexer.nextToken();
+    }
 }
