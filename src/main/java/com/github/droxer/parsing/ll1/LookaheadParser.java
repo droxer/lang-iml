@@ -4,9 +4,10 @@ import com.github.droxer.parsing.Lexer;
 import com.github.droxer.parsing.ListLexer;
 import com.github.droxer.parsing.Token;
 
-public class LookaheadParser{
+public final class LookaheadParser{
 
-    Lexer lexer;Token token;
+    private final Lexer lexer;
+    private Token token;
 
     public LookaheadParser(Lexer lexer) {
         this.lexer = lexer;

@@ -4,12 +4,12 @@ import com.github.droxer.parsing.Lexer;
 import com.github.droxer.parsing.ListLexer;
 import com.github.droxer.parsing.Token;
 
-public class LookaheadParser {
+public final class LookaheadParser {
 
-    protected Lexer lexer;
-    protected Token[] lookahead;
-    protected int k;
-    protected int p = 0;
+    private final Lexer lexer;
+    private Token[] lookahead;
+    private int k;
+    private int p = 0;
 
     public LookaheadParser(Lexer lexer, int k) {
         this.lexer = lexer;

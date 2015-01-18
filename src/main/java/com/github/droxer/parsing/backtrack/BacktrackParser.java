@@ -5,14 +5,15 @@ import com.github.droxer.parsing.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BacktrackParser {
-    protected Lexer input;
-    protected List<Integer> markers;
-    protected List<Token> lookahead;
-    protected int p = 0;
+public final class BacktrackParser {
 
-    public BacktrackParser(Lexer input) {
-        this.input = input;
+    private final Lexer lexer;
+    private List<Integer> markers;
+    private List<Token> lookahead;
+    private int p = 0;
+
+    public BacktrackParser(Lexer lexer) {
+        this.lexer = lexer;
         markers = new ArrayList<>();
         lookahead = new ArrayList<>();
         sync(1);
@@ -108,7 +109,7 @@ public class BacktrackParser {
 
     private void fill(int n) {
         for (int i = 1; i <= n; i++) {
-            lookahead.add(input.nextToken());
+            lookahead.add(lexer.nextToken());
         }
     }
 
@@ -126,7 +127,7 @@ public class BacktrackParser {
             consume();
         } else {
             throw new MismatchedTokenException("expecting " +
-                    input.getTokenName(x) + " found " + LT(1));
+                    lexer.getTokenName(x) + " found " + LT(1));
         }
     }
 
