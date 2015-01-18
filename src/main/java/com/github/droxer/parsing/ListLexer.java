@@ -66,7 +66,7 @@ public class ListLexer extends Lexer {
         }
     }
 
-    public boolean isLetter() {
+    private boolean isLetter() {
         return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z';
     }
 }

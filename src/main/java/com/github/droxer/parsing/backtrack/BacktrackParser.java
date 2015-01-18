@@ -5,12 +5,12 @@ import com.github.droxer.parsing.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class BacktrackParser {
+public class BacktrackParser {
 
-    private final Lexer lexer;
-    private List<Integer> markers;
-    private List<Token> lookahead;
-    private int p = 0;
+    protected final Lexer lexer;
+    protected List<Integer> markers;
+    protected List<Token> lookahead;
+    protected int p = 0;
 
     public BacktrackParser(Lexer lexer) {
         this.lexer = lexer;
@@ -23,10 +23,10 @@ public final class BacktrackParser {
      * stat : list EOF | assign EOF ;
      */
     public void stat() throws RecognitionException {
-        if (speculate_stat_alt1()) {
+        if (speculateStatAlt1()) {
             list();
             match(Lexer.EOF_TYPE);
-        } else if (speculate_stat_alt2()) {
+        } else if (speculateAtatAlt2()) {
             assign();
             match(Lexer.EOF_TYPE);
         } else {
@@ -34,7 +34,8 @@ public final class BacktrackParser {
         }
     }
 
-    public boolean speculate_stat_alt1() {
+    public boolean speculateStatAlt1() {
+        System.out.println("attempt alternative 1");
         boolean success = true;
         mark();
         try {
@@ -48,7 +49,8 @@ public final class BacktrackParser {
         return success;
     }
 
-    public boolean speculate_stat_alt2() {
+    public boolean speculateAtatAlt2() {
+        System.out.println("attempt alternative 2");
         boolean success = true;
         mark();
         try {
@@ -73,7 +75,7 @@ public final class BacktrackParser {
     /**
      * list : '[' elements ']' ; // match bracketed list
      */
-    public void list() throws RecognitionException {
+    protected void list() throws RecognitionException {
         match(ListLexer.LBRACK);
         elements();
         match(ListLexer.RBRACK);
@@ -142,7 +144,7 @@ public final class BacktrackParser {
         seek(marker);
     }
 
-    private void consume() {
+    protected void consume() {
         p++;
 
         if (p == lookahead.size() && !isSpeculating()) {
@@ -153,18 +155,18 @@ public final class BacktrackParser {
     }
 
 
-    private void sync(int i) {
+    protected void sync(int i) {
         if (p + i - 1 > (lookahead.size() - 1)) {
             int n = (p + i - 1) - (lookahead.size() - 1);
             fill(n);
         }
     }
 
-    private void seek(int index) {
+    protected void seek(int index) {
         p = index;
     }
 
-    private boolean isSpeculating() {
+    protected boolean isSpeculating() {
         return markers.size() > 0;
     }
 }

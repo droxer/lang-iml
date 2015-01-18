@@ -38,7 +38,7 @@ public final class LookaheadParser{
         }
     }
 
-    public void match(int x) {
+    private void match(int x) {
         if(token.getType() == x){
             consume();
         }else{
@@ -46,7 +46,7 @@ public final class LookaheadParser{
         }
     }
 
-    public void consume(){
+    private void consume(){
         token = lexer.nextToken();
     }
 }

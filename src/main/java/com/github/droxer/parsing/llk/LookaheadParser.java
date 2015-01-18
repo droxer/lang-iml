@@ -49,18 +49,18 @@ public final class LookaheadParser {
         }
     }
 
-    public void consume() {
+    private void consume() {
         lookahead[p] = lexer.nextToken();
         p = (p + 1) % k;
     }
 
-    public Token lookahead(int i) {
-        return lookahead[(p+i-1) % k];
+    private Token lookahead(int i) {
+        return lookahead[(p + i - 1) % k];
     }
 
-    public void match(int x) {
-        if ( lookahead(1).getType() != x ) {
-            throw new Error("expecting "+lexer.getTokenName(x)+ "; found "+ lookahead(1));
+    private void match(int x) {
+        if (lookahead(1).getType() != x) {
+            throw new Error("expecting " + lexer.getTokenName(x) + "; found " + lookahead(1));
         }
 
         consume();
