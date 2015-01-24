@@ -1,5 +1,7 @@
 package com.github.droxer.parsing;
 
+import com.github.droxer.Token;
+
 public abstract class Lexer {
     public static final char EOF = (char) -1;
     public static final int EOF_TYPE = 1;

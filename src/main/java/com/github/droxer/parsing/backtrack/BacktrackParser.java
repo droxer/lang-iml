@@ -1,5 +1,6 @@
 package com.github.droxer.parsing.backtrack;
 
+import com.github.droxer.Token;
 import com.github.droxer.parsing.*;
 
 import java.util.ArrayList;

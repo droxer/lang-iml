@@ -1,5 +1,7 @@
 package com.github.droxer.parsing;
 
+import com.github.droxer.Token;
+
 public class ListLexer extends Lexer {
 
     public static int NAME = 2;

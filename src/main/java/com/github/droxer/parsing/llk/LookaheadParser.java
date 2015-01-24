@@ -2,7 +2,7 @@ package com.github.droxer.parsing.llk;
 
 import com.github.droxer.parsing.Lexer;
 import com.github.droxer.parsing.ListLexer;
-import com.github.droxer.parsing.Token;
+import com.github.droxer.Token;
 
 public final class LookaheadParser {
 

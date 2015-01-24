@@ -1,4 +1,4 @@
-grammar Namelist;
+grammar NestedNameList;
 
 list     : '[' elements ']' ;
 elements : element (',' element)* ;

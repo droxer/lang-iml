@@ -1,4 +1,6 @@
-package com.github.droxer.parsing;
+package com.github.droxer;
+
+import com.github.droxer.parsing.ListLexer;
 
 public final class Token {
     private int type;

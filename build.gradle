@@ -14,4 +14,10 @@ project(":"){
 
         testCompile 'junit:junit:4.10'
     }
+
+    task antlr(type: JavaExec, description: "antlr Tool", dependsOn: ['classes', 'processResources']) {
+        main = 'org.antlr.v4.Tool'
+        classpath = sourceSets.main.runtimeClasspath
+        args System.getProperty("antlr.args", "").split(',').findAll { !it.allWhitespace }
+    }
 }
