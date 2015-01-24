@@ -9,15 +9,20 @@ project(":"){
     dependencies {
         compile 'org.antlr:antlr4:4.1',
                 'org.antlr:antlr4-runtime:4.1',
-                'org.antlr:ST4:4.0.3',
                 'com.google.guava:guava:18.0'
 
         testCompile 'junit:junit:4.10'
     }
 
-    task antlr(type: JavaExec, description: "antlr Tool", dependsOn: ['classes', 'processResources']) {
+    task antlr4(type: JavaExec, description: "antlr4 Tool") {
         main = 'org.antlr.v4.Tool'
         classpath = sourceSets.main.runtimeClasspath
-        args System.getProperty("antlr.args", "").split(',').findAll { !it.allWhitespace }
+        args System.getProperty("args", "").split(',').findAll { !it.allWhitespace }
+    }
+
+    task grun(type: JavaExec, description: "antlr4 TestRig") {
+        main = 'org.antlr.v4.runtime.misc.TestRig'
+        classpath = sourceSets.main.runtimeClasspath
+        args System.getProperty("args", "").split(',').findAll { !it.allWhitespace }
     }
 }

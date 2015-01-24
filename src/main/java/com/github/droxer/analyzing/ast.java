@@ -17,4 +17,39 @@ public class AST {
     public void addChild(AST ast) {
         ast.children.add(ast);
     }
+
+    public boolean isNil() {
+        return token == null;
+    }
+
+    @Override
+    public String toString() {
+        return token == null ? token.toString() : "nil";
+    }
+
+    public String toStringTree(){
+        if (children == null || children.size() == 0) {
+            return toString();
+        }
+
+        StringBuilder sb = new StringBuilder();
+        if (isNil()) {
+            sb.append("(");
+            sb.append(this.toString());
+            sb.append(' ');
+        }
+
+        for ( int i = 0; i < children.size(); i++ ) {
+            AST ast = children.get(i);
+            if (i > 0 ) {
+                sb.append(' ');
+            }
+        }
+
+        if ( isNil()) {
+            sb.append(")");
+        }
+
+        return sb.toString();
+    }
 }
