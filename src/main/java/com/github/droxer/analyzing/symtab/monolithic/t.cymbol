@@ -1,0 +1,3 @@
+int i = 9;
+float j;
+in k = i+2;

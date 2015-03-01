@@ -7,21 +7,27 @@ project(":"){
     }
 
     dependencies {
-        compile 'org.antlr:antlr4:4.1',
-                'org.antlr:antlr4-runtime:4.1',
+        compile 'org.antlr:antlr:3.5.2',
+                'org.antlr:antlr-runtime:3.5.2',
                 'com.google.guava:guava:18.0'
 
         testCompile 'junit:junit:4.10'
     }
 
-    task antlr4(type: JavaExec, description: "antlr4 Tool") {
-        main = 'org.antlr.v4.Tool'
+    task antlr(type: JavaExec, description: "antlr4 Tool") {
+        main = 'org.antlr.Tool'
         classpath = sourceSets.main.runtimeClasspath
         args System.getProperty("args", "").split(',').findAll { !it.allWhitespace }
     }
 
     task grun(type: JavaExec, description: "antlr4 TestRig") {
-        main = 'org.antlr.v4.runtime.misc.TestRig'
+        main = 'org.antlr.runtime.misc.TestRig'
+        classpath = sourceSets.main.runtimeClasspath
+        args System.getProperty("args", "").split(',').findAll { !it.allWhitespace }
+    }
+
+    task runner(type: JavaExec, description: "antlr4 test runner") {
+        main = System.getProperty("entry", "")
         classpath = sourceSets.main.runtimeClasspath
         args System.getProperty("args", "").split(',').findAll { !it.allWhitespace }
     }
